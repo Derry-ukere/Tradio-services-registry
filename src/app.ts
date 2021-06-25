@@ -11,7 +11,7 @@ import ApiRoutes from './routes';
 
 const isProduction: boolean = process.env.NODE_ENV === 'production';
 
-dotenv.config();
+dotenv.config(); 
 
 const app = express();
 

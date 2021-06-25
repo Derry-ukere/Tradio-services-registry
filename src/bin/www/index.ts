@@ -1,27 +1,21 @@
-/* istanbul ignore file */
 import errorHandler from 'errorhandler';
-import { createConnection } from 'typeorm';
-
 import app from '../../app';
-import dbConnection from '../../typeorm';
-import { autoCreateDb } from '../../mysql';
 import { Logger } from '../../helpers';
-
-app.use(errorHandler());
+import connectDB from '../../lib/db';
+ 
+app.use(errorHandler()); 
 
 (async () => {
-  await autoCreateDb();
+  const port = app.get('port');
 
-  await createConnection(dbConnection)
+  await connectDB() 
     .then(() => {
-      // Initialize server
-      const server = app.listen(process.env.APP_PORT || 8000, () => {
-        const port = app.get('port');
+      // Initializure server
+      const server = app.listen(process.env.APP_PORT || 8000);
 
-        Logger.Info(`Service Started at http://localhost:${port}`);
-        Logger.Info('Press CTRL+C to stop\n');
+      server.on('listening',()=>{
+        Logger.info(`Hi there! I'm listening on port ${port} in ${app.get('env')} mode.`,);
       });
-
       // Nodemon dev hack
       process.once('SIGUSR2', function() {
         server.close(function() {
@@ -30,6 +24,7 @@ app.use(errorHandler());
       });
     })
     .catch(error => {
-      Logger.Error('(TypeORM) Database connection error: ', error);
+      Logger.error('(TypeORM) Database connection error: ', error);
     });
 })();
+ 
