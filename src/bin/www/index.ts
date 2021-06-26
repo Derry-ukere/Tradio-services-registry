@@ -11,7 +11,7 @@ app.use(errorHandler());
   await connectDB() 
     .then(() => {
       // Initializure server
-      const server = app.listen(process.env.APP_PORT || 8000);
+      const server = app.listen(process.env.APP_PORT || port);
 
       server.on('listening',()=>{
         Logger.info(`Hi there! I'm listening on port ${port} in ${app.get('env')} mode.`,);
