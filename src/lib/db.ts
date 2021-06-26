@@ -5,7 +5,7 @@ import {Logger} from '../helpers/Logger';
 
 dotenv.config();
 
-const connectDB = async () => {
+const connectDB = async ( ) => {
   try {
     const conn = await mongoose.connect(process.env.MONGO_URL !, {
       useUnifiedTopology: true,

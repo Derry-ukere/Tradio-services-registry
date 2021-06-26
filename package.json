@@ -5,8 +5,8 @@
   "main": "./src/bin/www/index.ts",
   "private": false,
   "scripts": {
-    "prod:start": "NODE_ENV=production node --optimize_for_size --max_old_space_size=920 --gc_interval=100 ./dist/bin/www/index.js",
-    "dev:start": "NODE_ENV=development npm-run-all --parallel \"dev:watch\" \"prettier:watch\" \"test:watch\"",
+    "prod:start": "tsc && node --optimize_for_size --max_old_space_size=920 --gc_interval=100 ./dist/bin/www/index.js | bunyan",
+    "dev:start": "npm-run-all --parallel \"dev:watch\" \"prettier:watch\" \"test:watch\"",
     "dev:watch": "nodemon ./src/bin/www/index.ts | bunyan",
     "build": "webpack",
     "test": "jest",
@@ -52,7 +52,6 @@
     "install": "0.13.0",
     "log4js": "6.1.0",
     "method-override": "3.0.0",
-    "mongoose": "5.12.14",
     "morgan": "1.9.1",
     "mysql": "2.18.1",
     "mysql2": "2.1.0",
