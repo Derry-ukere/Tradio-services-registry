@@ -7,11 +7,12 @@ app.use(errorHandler());
 
 (async () => {
   // const port = app.get('port');
+  app.set('port', (process.env.PORT || 7000));
 
   await connectDB() 
     .then(() => {
       // Initializure server
-      const server = app.listen(process.env.APP_PORT || 7000);
+      const server = app.listen(app.get('port'));
 
       server.on('listening',()=>{
         Logger.info(`Hi there! I'm listening on port 7000  in ${app.get('env')} mode.`,);

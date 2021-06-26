@@ -6,6 +6,11 @@ const router: express.Router = express.Router();
 
 router.use(cors());
 
+router.use('/', (req, res) => {
+  res.send({ status: 'HOME' });
+});
+
+
 router.use('/health', (req, res) => {
   res.send({ status: 'OK' });
 });
