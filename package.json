@@ -17,7 +17,7 @@
     "clean": "rm -rf coverage dist"
   },
   "engines": {
-    "node": ">=12.10.0"
+    "node": "14.15.4"
   },
   "repository": {
     "type": "git",
