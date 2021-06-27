@@ -9,6 +9,7 @@
     "start": "node --optimize_for_size --max_old_space_size=920 --gc_interval=100 ./dist/bin/www/index.js | bunyan",
     "dev:start": "npm-run-all --parallel \"dev:watch\" \"prettier:watch\" \"test:watch\"",
     "dev:watch": "nodemon ./src/bin/www/index.ts | bunyan",
+    "postinstall": "tsc",
     "build": "webpack",
     "test": "jest",
     "test:watch": "jest --watchAll --collectCoverage=false",
