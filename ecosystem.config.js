@@ -13,9 +13,15 @@ module.exports = {
   ],
   env: {
     NODE_ENV: 'development',
+    MONGO_URL:
+      'mongodb+srv://Mudiagaukere1256:Mudiagaukere1256@cluster0.rqm7q.mongodb.net/proshop?authSource=admin&replicaSet=atlas-4mz03w-shard-0&readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=true',
+    APP_PORT: 7000,
   },
   env_production: {
     NODE_ENV: 'production',
+    MONGO_URL:
+      'mongodb+srv://Mudiagaukere1256:Mudiagaukere1256@cluster0.rqm7q.mongodb.net/proshop?authSource=admin&replicaSet=atlas-4mz03w-shard-0&readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=true',
+    APP_PORT: 7000,
   },
 
   deploy: {
