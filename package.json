@@ -5,7 +5,7 @@
   "main": "./src/bin/www/index.ts",
   "private": false,
   "scripts": {
-    "prod:start": "pm2 start ecosystem.config.js",
+    "prod:start": "pm2-runtime start ecosystem.config.js",
     "dev:start": "npm-run-all --parallel \"dev:watch\" \"prettier:watch\" \"test:watch\"",
     "dev:watch": "pm2 start ecosystem.config.js",
     "build": "webpack",
