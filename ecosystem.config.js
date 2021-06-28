@@ -8,7 +8,7 @@ module.exports = {
       name: 'app-registry',
       script: './dist/bin/www/index.js',
       watch: true,
-      instances: '3',
+      // instances: '3',
     },
   ],
   env: {
