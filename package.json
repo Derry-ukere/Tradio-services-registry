@@ -7,7 +7,7 @@
   "scripts": {
     "prod:start": "pm2-runtime start ecosystem.config.js",
     "dev:start": "npm-run-all --parallel \"dev:watch\" \"prettier:watch\" \"test:watch\"",
-    "dev:watch": "pm2 start ecosystem.config.js",
+    "dev:watch": "nodemon ./src/bin/www/index.ts | bunyan",
     "build": "webpack",
     "test": "jest",
     "test:watch": "jest --watchAll --collectCoverage=false",
