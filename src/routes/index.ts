@@ -1,18 +1,22 @@
 import express, {ErrorRequestHandler} from 'express';
 import cors from 'cors';
+// import AuthServices from '../services/Auth';
 // import { handleRouteError, } from '../handlers';
 // import { Error } from 'mongoose';
-
+import AuthController from '../controllers/Auth';
 const router: express.Router = express.Router();
 // const services = express();
 
 router.use(cors());
 
 
+ 
+
+router.use('/register',AuthController.registerUser); 
+router.use('/login',AuthController.authenticateUser); 
 
 
 router.use('/health', (req, res) => {
-  console.log('called health route');
   res.send({ status: 'OK' });
 });
 
