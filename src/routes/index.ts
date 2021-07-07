@@ -1,19 +1,14 @@
 import express, {ErrorRequestHandler} from 'express';
 import cors from 'cors';
-// import AuthServices from '../services/Auth';
-// import { handleRouteError, } from '../handlers';
-// import { Error } from 'mongoose';
-import AuthController from '../controllers/Auth';
+import authRoutes from './auth';
 const router: express.Router = express.Router();
-// const services = express();
 
 router.use(cors());
 
 
  
 
-router.use('/register',AuthController.registerUser); 
-router.use('/login',AuthController.authenticateUser); 
+router.use('/api/auth',authRoutes); 
 
 
 router.use('/health', (req, res) => {

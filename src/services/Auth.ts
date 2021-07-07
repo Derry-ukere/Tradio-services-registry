@@ -25,7 +25,8 @@ export default class AuthServices {
       if(registeredClient){
         Logger.info('user created', registeredClient._id);
         return {
-          message : 'User created sucessfully'
+          message : 'User created sucessfully',
+          status: 'tested'
         };
       }
      

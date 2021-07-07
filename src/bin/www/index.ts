@@ -5,7 +5,6 @@ import connectDB from '../../lib/db';
   
 app.use(errorHandler());             
 (async () => {
-  // const port = app.get('port');        
   app.set('port', (process.env.PORT || 7000));    
    
   await connectDB()  
@@ -19,7 +18,7 @@ app.use(errorHandler());
       // Nodemon dev hack
       process.once('SIGUSR2', function() {
         server.close(function() { 
-          process.kill(process.pid, 'SIGUSR2');    
+          process.kill(process.pid, 'SIGUSR2');     
         });
       });
     })
