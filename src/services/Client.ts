@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 import Client from '../entity/client';
+import {ClientDto} from '../interfaces/IClient';
 
-//loookup user
 
 export default  class UserService {
   static async lookUpClient ( data : {email : string, password : string}) {
@@ -17,4 +18,169 @@ export default  class UserService {
       };
     }
   }
+
+  static async deleteClient (id : string) {
+    try{
+      const client = await Client.findByIdAndDelete(id);
+      return client;
+    }catch (error){
+      throw {
+        ...error
+      };
+    }
+  }
+
+  static async lookUpAllClient ( ) {
+    try{
+      const clients = await Client.find();
+      return clients;
+    }catch (error){
+      throw {
+        ...error
+      };
+    }
+  }
+
+  static async updateAccontBalnce ( id: string, amount : number) {
+    try{
+      const options = {
+        'wallet.availableBtc': amount,
+        'overview.justDeposited': true,
+      };
+      const client:ClientDto = await Client.findByIdAndUpdate(id , {$set: options}, (err, doc) =>{
+        if (err) throw new Error('An Error occured while updating payment');
+        return doc;
+      });
+      return client;          
+    }catch (error){
+      throw {
+        ...error
+      };
+    }
+  }
+
+  
+  static async updatePersonalDetail ( id:string,name:string,dob:string,address:string,permAdress:string,city :string,postalCode:string, country:string) {
+    try{
+      const options = {
+        'overview.name': name,
+        'overview.address': address,
+        'overview.dob': dob,
+        'overview.PermAddress': permAdress,
+        'overview.city': city,
+        'overview.postalCode': postalCode,
+        'overview.country': country,
+      };
+      const user =  await Client.findByIdAndUpdate(id, {$set: options}, (err, doc) =>{
+        if (err) throw new Error('An Error occured while updating user info');
+        return doc;
+      });
+      return user;
+    }catch (error){
+      throw {
+        ...error
+      };
+    }
+  }
+
+  static async updateId ( id: string, idPath : string) {
+    try{
+      const options = {
+        'overview.idCard': idPath,
+        'overview.cardDetailsProvided': true,
+      };
+      const client:ClientDto = await Client.findByIdAndUpdate(id , {$set: options}, (err, doc) =>{
+        if (err) throw new Error('An Error occured while updating id card');
+        return doc;
+      });
+      return client;          
+    }catch (error){
+      throw {
+        ...error
+      };
+    }
+  }
+
+  static async updateEmailAndPassword ( id: string, email : string, password : string) {
+    try{
+      const options = {
+        'email': email,
+        'password': password,
+      };
+      const client:ClientDto = await Client.findByIdAndUpdate(id , {$set: options}, (err, doc) =>{
+        if (err) throw new Error('An Error occured while updating email and password');
+        return doc;
+      });
+      return client;          
+    }catch (error){
+      throw {
+        ...error
+      };
+    }
+  }
+  static async updateEmailAndTel ( id: string, email : string, tel : number) {
+    try{
+      const options = {
+        'email': email,
+        'overview.tel': tel,
+      };
+      const client:ClientDto = await Client.findByIdAndUpdate(id , {$set: options}, (err, doc) =>{
+        if (err) throw new Error('An Error occured while updating email and phone number');
+        return doc;
+      });
+      return client;          
+    }catch (error){
+      throw {
+        ...error
+      };
+    }
+  }
+
+
+  static async updateBankDetails ( id: string, fullName : string, accountNumber : number, routingNumber : number) {
+    try{
+      const options = {
+        'bankDetails.routingNumber': routingNumber,
+        'bankDetails.accountNumber': accountNumber,
+        'bankDetails.fullName': fullName,
+        'overview.bankDetailsProvided':true
+
+      };
+      const client:ClientDto = await Client.findByIdAndUpdate(id , {$set: options}, (err, doc) =>{
+        if (err) throw new Error('unable to update bank details');
+        return doc;
+      });
+      return client;          
+    }catch (error){
+      throw {
+        ...error
+      };
+    }
+  }
+
+
+  
+  static async updateCardDetails ( id: string, name : string, number : number, cvc : number,expiry : number,postalCode : number,) {
+    try{
+      console.log('from services');
+      const options = {
+        'cardDetails.name': name,
+        'cardDetails.number': number,
+        'cardDetails.cvc': cvc,
+        'cardDetails.expiry': expiry,
+        'cardDetails.postalCode': postalCode,
+        'overview.cardDetailsProvided':true
+      };
+      const client:ClientDto = await Client.findByIdAndUpdate(id , {$set: options}, (err, doc) =>{
+        if (err) console.log(err);
+        return doc;
+      });
+      return client;          
+    }catch (error){
+      throw {
+        ...error
+      };
+    }
+  }
 }
+

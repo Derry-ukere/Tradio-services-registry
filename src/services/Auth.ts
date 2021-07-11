@@ -10,9 +10,6 @@ export default class AuthServices {
   static  async createClient (clientData : ClientRegistrationDto){
     try {
       const {username, email, password} = clientData;
-      console.log('username', username);
-      console.log('email', email);
-      console.log('password', password);
       const clientExist = await Client.findOne({email});
       if (clientExist){
         throw new Error ('user already exist');

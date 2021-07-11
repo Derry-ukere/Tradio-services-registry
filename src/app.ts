@@ -6,6 +6,8 @@ import helmet from 'helmet';
 import methodOverride from 'method-override';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
+import path from 'path';
+
 
 import ApiRoutes from './routes';
 
@@ -23,6 +25,9 @@ app.set('env', process.env.NODE_ENV);
 app.use(bodyParser.json());
 
 app.use(cookieParser());
+// static files
+// const __dirname = path.resolve();
+app.use('../uploads', express.static(path.join(__dirname, '../uploads')));
 
 app.use(
   compression({

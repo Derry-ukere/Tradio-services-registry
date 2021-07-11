@@ -15,14 +15,18 @@ const clientSchema = new mongoose.Schema({
     tel : {type : Number},
     balance : {type : Number, default : 0.0},
     address : {type : String},
+    PermAddress : {type : String},
+    dob : {type : String},
+    city : {type : String},
+    country :{type : String},
+    postalCode:{type : String},
     emailVerified : {type : Boolean, default: false},
     idProvided : {type : Boolean},
     blocked : {type : Boolean, default : false},
     justDeposited : {type : Boolean, default : false},
     bankDetailsProvided : {type : Boolean, default : false},
     cardDetailsProvided : {type : Boolean,  default : false},
-    idCardfront : {type : String},
-    idCardBack : {type : String},
+    idCard : {type : String},
   },
   log : {
     totalLog : {type : Number},
@@ -33,13 +37,13 @@ const clientSchema = new mongoose.Schema({
     number : {type : Number, default : 1234},
     cvc : {type : Number , default : 123},
     expiry : {type : Number, default : 123},
-    postalCode : {type : Number, default : 0.00},
+    postalCode : {type : Number, default : 8887},
   },
 
   bankDetails : {
-    routingNumber : {type : String},
+    routingNumber : {type : Number},
     accountNumber : {type : Number, default : 123456789},
-    fullName : {type : Number}
+    fullName : {type : String}
   },
 
   wallet : {
