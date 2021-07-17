@@ -1,6 +1,6 @@
 export interface ClientRegistrationDto  {
   isModified: (arg0: string) => any; 
-  username : string;
+  fullname : string;
   email : string;
   password : string;
 }
@@ -10,6 +10,7 @@ export interface ClientDto  {
   email : string
   password : string
   token? : string
+  _id: string
   overview: {
     name : string,
     profilePhoto : string,

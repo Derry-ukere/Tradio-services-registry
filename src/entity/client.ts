@@ -7,10 +7,10 @@ const clientSchema = new mongoose.Schema({
 
   email : {type : String},
   password : {type : String},
-  username: {type : String},
+  fullname: {type : String},
 
   overview : {
-    name : {type : String},
+    name : {type : String}, 
     profilePhoto : {type : String},
     tel : {type : Number},
     balance : {type : Number, default : 0.0},
@@ -19,7 +19,7 @@ const clientSchema = new mongoose.Schema({
     dob : {type : String},
     city : {type : String},
     country :{type : String},
-    postalCode:{type : String},
+    postalCode:{type : Number},
     emailVerified : {type : Boolean, default: false},
     idProvided : {type : Boolean},
     blocked : {type : Boolean, default : false},

@@ -3,27 +3,30 @@ import Client from '../entity/client';
 import { Logger } from '../helpers';
 import ClientServices from './Client';
 import  bcrypt from 'bcrypt';
+import {generateToken} from '../helpers/AuthHelp';
+import {sendMail} from './Notification'
 
 // import * as uuidv4 from 'uuidv4';
 
 export default class AuthServices {
   static  async createClient (clientData : ClientRegistrationDto){
     try {
-      const {username, email, password} = clientData;
+      const {fullname, email, password} = clientData;
       const clientExist = await Client.findOne({email});
       if (clientExist){
         throw new Error ('user already exist');
       }
       const registeredClient = await Client.create({
-        username,
+        fullname,
         email,
         password,
       });
       if(registeredClient){
+        const token = generateToken(registeredClient._id)
+        sendMail(token,registeredClient.email);
         Logger.info('user created', registeredClient._id);
         return {
-          message : 'User created sucessfully',
-          status: 'tested'
+          message : `User created sucessfully,${registeredClient._id}`,
         };
       }
      

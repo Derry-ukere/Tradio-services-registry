@@ -60,20 +60,28 @@ export default  class UserService {
   }
 
   
-  static async updatePersonalDetail ( id:string,name:string,dob:string,address:string,permAdress:string,city :string,postalCode:string, country:string) {
+  static async updatePersonalDetail ( obj:any, name:string,dob:string, image:string ,address:string,permAdress:string,city :string,postalCode:number, country:string) {
     try{
+      const id = obj.id
       const options = {
         'overview.name': name,
         'overview.address': address,
         'overview.dob': dob,
         'overview.PermAddress': permAdress,
+        'overview.profilePhoto': image,
         'overview.city': city,
         'overview.postalCode': postalCode,
         'overview.country': country,
+        'overview.emailVerified': true,
       };
       const user =  await Client.findByIdAndUpdate(id, {$set: options}, (err, doc) =>{
-        if (err) throw new Error('An Error occured while updating user info');
-        return doc;
+        if (err) {
+          console.log('err',err);
+          throw new Error('An Error occured while updating user info')
+      }
+        return {
+          message: 'User created sucessfully'
+        };
       });
       return user;
     }catch (error){

@@ -1,10 +1,11 @@
 import {Request,Response} from 'express';
-// import {ClientRegistrationDto} from '../interfaces/IClient';
 import {handleErrorResponse} from '../handlers/RouteHandlers';
-// import {generateToken} from '../helpers/AuthHelp';
-// import AuthServices from '../services/Auth';
 import UserService from '../services/Client';
+import jwt from 'jsonwebtoken';
 
+interface jwtType {
+  id: string
+}
 export default class ClientController {
 
   // @desc    Fetch single client
@@ -63,11 +64,13 @@ export default class ClientController {
   // @access  private
   static async updatePersonalDetail(req : Request, res : Response){
     try {
-      const {id,name,dob,address,permAdress,city,postalCode, country} = req.query;
-      const client = await UserService.updatePersonalDetail(id,name,dob,address,permAdress,city,postalCode, country);
+      const {id,name,dob,address,permAdress,city,postalCode,image, country} = req.query;
+      const decoded = jwt.decode(id);
+      const client = await UserService.updatePersonalDetail(decoded,name,dob,address,permAdress,city,postalCode,image, country);
       return  res.send(client);
     }catch(error){
       handleErrorResponse(error, res); 
+      console.log('error',error);
     }
   }
   

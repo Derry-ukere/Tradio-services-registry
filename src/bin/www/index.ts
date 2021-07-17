@@ -2,14 +2,14 @@ import errorHandler from 'errorhandler';
 import app from '../../app'; 
 import { Logger } from '../../helpers';    
 import connectDB from '../../lib/db';                      
-  
+          
 app.use(errorHandler());                           
 (async () => { 
   app.set('port', (process.env.PORT || 7000));    
-     
+       
   await connectDB()  
     .then(() => {    
-      // Initializure server    
+      // Initializure server                     
       const server = app.listen(app.get('port')); 
 
       server.on('listening',()=>{

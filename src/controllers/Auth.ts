@@ -21,7 +21,7 @@ export default class AuthController {
       if(authenticated){
         return   res.status(200).json({
           data: authenticated,
-          token:generateToken(authenticated.username)
+          token:generateToken(authenticated._id)
         });                                  
       }
       res.status(200).json(authenticated);                                  
