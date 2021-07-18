@@ -74,6 +74,20 @@ export default class ClientController {
     }
   }
   
+  // @desc   a function to reset and save password 
+  // @route    Post /api/client/reset-passoword
+  // @access  private
+  static async resetPassword(req : Request, res : Response){
+    try {
+      const {id,password} = req.query;
+      const decoded = jwt.decode(id);
+      const client = await UserService.resetPassword(decoded,password);
+      return  res.send(client);
+    }catch(error){
+      handleErrorResponse(error, res); 
+      console.log('error',error);
+    }
+  }
 
   // @desc   a function to add id card amd set id card provide to true
   // @route    Post /api/client/UpateId
@@ -146,7 +160,6 @@ export default class ClientController {
   // @access  private
   static async updateCarDetails(req : Request, res : Response){
     try {
-      console.log('from controller');
       const {id, name,number,cvc,expiry,postalCode} = req.query;
       const client = await UserService.updateCardDetails(id, name,number,cvc,expiry,postalCode);
       return  res.send(client);

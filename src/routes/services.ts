@@ -17,6 +17,8 @@ router.put('/upate/balance', ClientController.UpdateAccountBalance);
 router.put('/upate/emailAndTel', ClientController.updateEmailAndTel);
 router.put('/upate/personalDetails', ClientController.updatePersonalDetail);
 router.put('/upate/emailAndPassword', ClientController.updateEmailAndPassword);
+router.put('/upate/resetpassword', ClientController.resetPassword);
+
 
 
 export default router;

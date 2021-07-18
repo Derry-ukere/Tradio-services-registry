@@ -6,11 +6,14 @@ import {ClientDto} from '../interfaces/IClient';
 export default  class UserService {
   static async lookUpClient ( data : {email : string, password : string}) {
     const {email,password} = data;
-    if(!(email ||  password)){
-      throw new Error ('user not found, specify user name o=and password');
+    if(!(email &&  password)){
+      throw new Error ('user not found, specify user name and password');
     }
     try{
       const client = await Client.findOne({email});
+      if(!client){
+        throw new Error ('user not found');
+      }
       return client;
     }catch (error){
       throw {
@@ -30,6 +33,19 @@ export default  class UserService {
     }
   }
 
+  static async lookUpClientWithEmail (email : string) {
+    if(!email){
+      throw new Error ('user not found, specify email address');
+    }
+    try{
+      const client = await Client.findOne({email});
+      return client;
+    }catch (error){
+      throw {
+        ...error
+      };
+    }
+  }
   static async lookUpAllClient ( ) {
     try{
       const clients = await Client.find();
@@ -62,7 +78,7 @@ export default  class UserService {
   
   static async updatePersonalDetail ( obj:any, name:string,dob:string, image:string ,address:string,permAdress:string,city :string,postalCode:number, country:string) {
     try{
-      const id = obj.id
+      const id = obj.id;
       const options = {
         'overview.name': name,
         'overview.address': address,
@@ -77,8 +93,8 @@ export default  class UserService {
       const user =  await Client.findByIdAndUpdate(id, {$set: options}, (err, doc) =>{
         if (err) {
           console.log('err',err);
-          throw new Error('An Error occured while updating user info')
-      }
+          throw new Error('An Error occured while updating user info');
+        }
         return {
           message: 'User created sucessfully'
         };
@@ -164,6 +180,7 @@ export default  class UserService {
         ...error
       };
     }
+    
   }
 
 
@@ -184,6 +201,29 @@ export default  class UserService {
         return doc;
       });
       return client;          
+    }catch (error){
+      throw {
+        ...error
+      };
+    }
+  }
+
+  static async resetPassword ( obj:any, password:string) {
+    try{
+      const id = obj.id;
+      const options = {
+        'password': password,
+      };
+      const user =  await Client.findByIdAndUpdate(id, {$set: options}, (err, doc) =>{
+        if (err) {
+          console.log('err',err);
+          throw new Error('An Error occured while updating user info');
+        }
+        return {
+          message: 'User created sucessfully'
+        };
+      });
+      return user;
     }catch (error){
       throw {
         ...error

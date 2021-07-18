@@ -24,8 +24,17 @@ export default class AuthController {
           token:generateToken(authenticated._id)
         });                                  
       }
-      res.status(200).json(authenticated);                                  
     } catch (error) {
+      handleErrorResponse(error, res); 
+    }
+  }
+
+  static async sendRecovermail (req : Request, res : Response){
+    try {
+      const status = await AuthServices.sendPasswordRecoveryMail(req.query);
+      res.status(200).json(status);
+    } catch (error) {
+      console.log('error from controller',error);
       handleErrorResponse(error, res); 
     }
   }

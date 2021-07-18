@@ -4,7 +4,7 @@ import { Logger } from '../helpers';
 import ClientServices from './Client';
 import  bcrypt from 'bcrypt';
 import {generateToken} from '../helpers/AuthHelp';
-import {sendMail} from './Notification'
+import {sendMail,sendPasswordRecoverMail} from './Notification';
 
 // import * as uuidv4 from 'uuidv4';
 
@@ -22,7 +22,7 @@ export default class AuthServices {
         password,
       });
       if(registeredClient){
-        const token = generateToken(registeredClient._id)
+        const token = generateToken(registeredClient._id);
         sendMail(token,registeredClient.email);
         Logger.info('user created', registeredClient._id);
         return {
@@ -51,6 +51,28 @@ export default class AuthServices {
     }catch(error){
       Logger.error(' user was not created', error);
       throw new Error('user not found');
+    }
+  }
+
+
+  static  async sendPasswordRecoveryMail (data : {email : string}){
+    try {
+      const {email} = data; 
+      const clientExist = await Client.findOne({email});
+      if (!clientExist){
+        throw new Error ('Email does not exist');
+        return;
+      } 
+      const token = generateToken(clientExist._id);
+      sendPasswordRecoverMail(token,clientExist.email);
+      Logger.info('recovery mail sent successfully', clientExist._id);
+      return {
+        message : `recovery mail sent successfully,${clientExist._id}`,
+      };
+    }
+    catch (error) {
+      Logger.error('unable to send mail',error);
+      throw new Error ('unable to send mail');
     }
   }
 }
