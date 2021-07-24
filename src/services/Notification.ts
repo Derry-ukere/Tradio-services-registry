@@ -1,16 +1,25 @@
 import nodeMailer from 'nodemailer';
 import smtpTransport from 'nodemailer-smtp-transport';
+// import nodeoutlook  from 'nodejs-nodemailer-outlook';
+
 
 const sendMail = (token : string, emailAddress : string) => {
   try {
     const transporter = nodeMailer.createTransport(
       smtpTransport({
-        service: 'gmail',
-        host: 'smtp.gmail.com',
+        host: 'smtp-mail.outlook.com',
+        port: 587,
+        secure:false,
         auth: {
-          user: 'mudiagaukere@gmail.com',
-          pass: 'LootingAvenger101%',
+          user: 'Tradiobtc@outlook.com',
+          pass: 'Mudiagaukere1256',
+          
         },
+        tls: {
+          ciphers:'SSLv3'
+        },
+        logger: true,
+        debug: true
       })
     );
     const link = `https://adoring-jepsen-5ed0f3.netlify.app/completeregistration/${token}`;
@@ -45,24 +54,30 @@ const sendPasswordRecoverMail = (token : string, emailAddress : string) => {
   try {
     const transporter = nodeMailer.createTransport(
       smtpTransport({
-        service: 'gmail',
-        host: 'smtp.gmail.com',
+        host: 'smtp-mail.outlook.com',
+        port: 587,
+        secure:false,
         auth: {
-          user: 'mudiagaukere@gmail.com',
-          pass: 'LootingAvenger101%',
+          user: 'Tradiobtc@outlook.com',
+          pass: 'Mudiagaukere1256',
         },
+        tls: {
+          ciphers:'SSLv3'
+        },
+        logger: true,
+        debug: true
       })
     );
     const link = `https://adoring-jepsen-5ed0f3.netlify.app/resetPasswrod/${token}`;
     const output = `
     <h2>Tradio</h2>
-    <p>Click on the Link below to reset your Password</p>
+    <p>Click on the Link below to reset your Password test change</p>
     <button><a href = ${link}>Click on the Link below to comfrim your Account</a></button> 
 
   `;
 
     const mailOptions = {
-      from: 'derryukere@gmail.com',
+      from: 'Tradiobtc@outlook.com',
       to: emailAddress,
       subject: 'Password Reset',
       html: output,
