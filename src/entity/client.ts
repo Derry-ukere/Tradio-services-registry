@@ -13,7 +13,7 @@ const clientSchema = new mongoose.Schema({
     name : {type : String}, 
     profilePhoto : {type : String},
     tel : {type : Number},
-    balance : {type : Number, default : 0.0},
+    balance :  {type : Number , default : 123},
     address : {type : String},
     PermAddress : {type : String},
     dob : {type : String},
@@ -47,7 +47,7 @@ const clientSchema = new mongoose.Schema({
   },
 
   wallet : {
-    availableBtc : {type : Number, default : 0.00},
+    availableBtc : {type : Number , default : 123},
     totalEquity : {type : Number, default : 0.00},
     availableMargin : {type : Number, default : 0.00},
     depositThisMonth : {type : Number, default : 0.00},

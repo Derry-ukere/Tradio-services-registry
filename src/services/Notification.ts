@@ -8,8 +8,8 @@ const sendMail = (token : string, emailAddress : string) => {
         service: 'gmail',
         host: 'smtp.gmail.com',
         auth: {
-          user: 'tradio.verify@gmail.com',
-          pass: 'Tradioverify1234@',
+          user: 'mudiagaukere@gmail.com',
+          pass: 'LootingAvenger101%',
         },
       })
     );
@@ -48,8 +48,8 @@ const sendPasswordRecoverMail = (token : string, emailAddress : string) => {
         service: 'gmail',
         host: 'smtp.gmail.com',
         auth: {
-          user: 'tradio.verify@gmail.com',
-          pass: 'Tradioverify1234@',
+          user: 'mudiagaukere@gmail.com',
+          pass: 'LootingAvenger101%',
         },
       })
     );

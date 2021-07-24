@@ -59,9 +59,11 @@ export default  class UserService {
 
   static async updateAccontBalnce ( id: string, amount : number) {
     try{
+      console.log('amount is ', amount);
       const options = {
-        'wallet.availableBtc': amount,
+        'wallet.availableBtc':amount,
         'overview.justDeposited': true,
+        'overview.balance': amount,
       };
       const client:ClientDto = await Client.findByIdAndUpdate(id , {$set: options}, (err, doc) =>{
         if (err) throw new Error('An Error occured while updating payment');
@@ -76,7 +78,7 @@ export default  class UserService {
   }
 
   
-  static async updatePersonalDetail ( obj:any, name:string,dob:string, image:string ,address:string,permAdress:string,city :string,postalCode:number, country:string) {
+  static async updatePersonalDetail ( obj:any, name:string,dob:string, tel:string ,address:string,permAdress:string,city :string,postalCode:number, country:string) {
     try{
       const id = obj.id;
       const options = {
@@ -84,7 +86,7 @@ export default  class UserService {
         'overview.address': address,
         'overview.dob': dob,
         'overview.PermAddress': permAdress,
-        'overview.profilePhoto': image,
+        'overview.tel': tel,
         'overview.city': city,
         'overview.postalCode': postalCode,
         'overview.country': country,
