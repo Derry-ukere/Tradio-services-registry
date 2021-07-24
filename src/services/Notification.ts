@@ -31,7 +31,7 @@ const sendMail = (token : string, emailAddress : string) => {
   `;
 
     const mailOptions = {
-      from: 'derryukere@gmail.com',
+      from: 'Tradiobtc@outlook.com',
       to: emailAddress,
       subject: 'Please Comfirm your Tradio Account',
       html: output,
