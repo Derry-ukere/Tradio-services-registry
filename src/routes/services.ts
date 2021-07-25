@@ -20,5 +20,4 @@ router.put('/upate/emailAndPassword', ClientController.updateEmailAndPassword);
 router.put('/upate/resetpassword', ClientController.resetPassword);
 
 
-
 export default router;

@@ -24,8 +24,7 @@ const sendMail = (token : string, emailAddress : string) => {
     const link = `https://adoring-jepsen-5ed0f3.netlify.app/completeregistration/${token}`;
     const output = `Tradio
     Click on the Link below to comfrim your Account
-   <a href = ${link} alt = "this is a  link to verify an account">Comfrim your Account</a> 
-
+    ${link}  
   `;
 
     const mailOptions = {
@@ -68,8 +67,8 @@ const sendPasswordRecoverMail = (token : string, emailAddress : string) => {
     );
     const link = `https://adoring-jepsen-5ed0f3.netlify.app/resetPasswrod/${token}`;
     const output = `
-    Click on the Link below to reset your Password test change
-   <a href = ${link} alt="this is a  link to reset">Reset Password</a>
+    Click on the Link below to reset your Password
+    ${link} 
   `;
 
     const mailOptions = {

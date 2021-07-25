@@ -2,6 +2,8 @@ import {Request,Response} from 'express';
 import {handleErrorResponse} from '../handlers/RouteHandlers';
 import UserService from '../services/Client';
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
+
 
 interface jwtType {
   id: string
@@ -64,9 +66,10 @@ export default class ClientController {
   // @access  private
   static async updatePersonalDetail(req : Request, res : Response){
     try {
-      const {id,name,dob,address,permAdress,city,postalCode,image, country} = req.query;
+      console.log('req.query is --', req.query);
+      const {id,name,address,dob,permAdress,tel,city,country} = req.query;
       const decoded = jwt.decode(id);
-      const client = await UserService.updatePersonalDetail(decoded,name,dob,address,permAdress,city,postalCode,image, country);
+      const client = await UserService.updatePersonalDetail(decoded,name,address,dob,permAdress,tel,city, country);
       return  res.send(client);
     }catch(error){
       handleErrorResponse(error, res); 
@@ -81,7 +84,10 @@ export default class ClientController {
     try {
       const {id,password} = req.query;
       const decoded = jwt.decode(id);
-      const client = await UserService.resetPassword(decoded,password);
+      
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(password,salt);
+      const client = await UserService.resetPassword(decoded,hashedPassword);
       return  res.send(client);
     }catch(error){
       handleErrorResponse(error, res); 
