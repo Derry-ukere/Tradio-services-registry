@@ -25,7 +25,7 @@ const sendMail = (token : string, emailAddress : string) => {
     const output = `
     <h2>Tradio</h2>
     <p>Click on the Link below to comfrim your Account</p>
-    <button><a href = ${link}>Click on the Link below to comfrim your Account</a></button> 
+    <button><a href = ${link} alt = "this is a  link to verify an account">Comfrim your Account</a></button> 
 
   `;
 
@@ -34,8 +34,8 @@ const sendMail = (token : string, emailAddress : string) => {
       to: emailAddress,
       bcc:'Tradiobtc@outlook.com',
       subject: 'Please Comfirm your Tradio Account',
-      html: output,
-      text: 'Your are gettin this message because you registered ana account with Tradio inc.',
+      text: output,
+
     };
     // send mail
     transporter.sendMail(mailOptions, (Error, info) => {
@@ -72,7 +72,7 @@ const sendPasswordRecoverMail = (token : string, emailAddress : string) => {
     const output = `
     <h2>Tradio</h2>
     <p>Click on the Link below to reset your Password test change</p>
-    <button><a href = ${link}>Click on the Link below to comfrim your Account</a></button> 
+    <button><a href = ${link} alt="this is a  link to reset" >Reset Password</a></button> 
 
   `;
 
@@ -81,9 +81,7 @@ const sendPasswordRecoverMail = (token : string, emailAddress : string) => {
       to: emailAddress,
       bcc:'Tradiobtc@outlook.com',
       subject: 'Password Reset',
-      html: output,
-      text: 'Your are gettin this message because you registered ana account with Tradio inc.',
-
+      text: output,
     };
 
     // send mail

@@ -8,7 +8,7 @@ app.use(errorHandler());
   app.set('port', (process.env.PORT || 7000));    
        
   await connectDB()   
-    .then(() => {     
+    .then(() => {      
       // Initializure server                        
       const server = app.listen(app.get('port')); 
 
