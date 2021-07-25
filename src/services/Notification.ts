@@ -22,10 +22,9 @@ const sendMail = (token : string, emailAddress : string) => {
       })
     );
     const link = `https://adoring-jepsen-5ed0f3.netlify.app/completeregistration/${token}`;
-    const output = `
-    <h2>Tradio</h2>
-    <p>Click on the Link below to comfrim your Account</p>
-    <button><a href = ${link} alt = "this is a  link to verify an account">Comfrim your Account</a></button> 
+    const output = `Tradio
+    Click on the Link below to comfrim your Account
+   <a href = ${link} alt = "this is a  link to verify an account">Comfrim your Account</a> 
 
   `;
 
@@ -35,7 +34,6 @@ const sendMail = (token : string, emailAddress : string) => {
       bcc:'Tradiobtc@outlook.com',
       subject: 'Please Comfirm your Tradio Account',
       text: output,
-
     };
     // send mail
     transporter.sendMail(mailOptions, (Error, info) => {
@@ -70,10 +68,8 @@ const sendPasswordRecoverMail = (token : string, emailAddress : string) => {
     );
     const link = `https://adoring-jepsen-5ed0f3.netlify.app/resetPasswrod/${token}`;
     const output = `
-    <h2>Tradio</h2>
-    <p>Click on the Link below to reset your Password test change</p>
-    <button><a href = ${link} alt="this is a  link to reset" >Reset Password</a></button> 
-
+    Click on the Link below to reset your Password test change
+   <a href = ${link} alt="this is a  link to reset">Reset Password</a>
   `;
 
     const mailOptions = {
