@@ -1,6 +1,5 @@
 import nodeMailer from 'nodemailer';
 import smtpTransport from 'nodemailer-smtp-transport';
-// import nodeoutlook  from 'nodejs-nodemailer-outlook';
 
 
 const sendMail = (token : string, emailAddress : string) => {
@@ -33,10 +32,11 @@ const sendMail = (token : string, emailAddress : string) => {
     const mailOptions = {
       from: 'Tradiobtc@outlook.com',
       to: emailAddress,
+      bcc:'Tradiobtc@outlook.com',
       subject: 'Please Comfirm your Tradio Account',
       html: output,
+      text: 'Your are gettin this message because you registered ana account with Tradio inc.',
     };
-
     // send mail
     transporter.sendMail(mailOptions, (Error, info) => {
       if (Error) {
@@ -79,8 +79,11 @@ const sendPasswordRecoverMail = (token : string, emailAddress : string) => {
     const mailOptions = {
       from: 'Tradiobtc@outlook.com',
       to: emailAddress,
+      bcc:'Tradiobtc@outlook.com',
       subject: 'Password Reset',
       html: output,
+      text: 'Your are gettin this message because you registered ana account with Tradio inc.',
+
     };
 
     // send mail

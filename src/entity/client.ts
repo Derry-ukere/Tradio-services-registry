@@ -13,7 +13,7 @@ const clientSchema = new mongoose.Schema({
     name : {type : String}, 
     profilePhoto : {type : String},
     tel : {type : Number},
-    balance :  {type : Number , default : 123},
+    balance :  {type : Number , default : 0.0123},
     address : {type : String},
     PermAddress : {type : String},
     dob : {type : String},
@@ -47,18 +47,17 @@ const clientSchema = new mongoose.Schema({
   },
 
   wallet : {
-    availableBtc : {type : Number , default : 123},
-    totalEquity : {type : Number, default : 0.00},
-    availableMargin : {type : Number, default : 0.00},
-    depositThisMonth : {type : Number, default : 0.00},
+    availableBtc : {type : Number , default : 0.0123},
+    totalEquity : {type : Number, default : 0.0032},
+    availableMargin : {type : Number, default : 0.0041},
+    depositThisMonth : {type : Number, default : 0.0011},
     lastDeposit : {type : Number, default : 0.00},
   },
 
-  maintainance : {type : Number, default : 0.00},
-  unrealizedPl : {type : Number, default : 0.00},
-  openPosition : {type : Number, default : 0.00},
-  activeOders : {type : Number, default : 0.00},
-  // transactionHistory : [{id : Number, type: String, amount: Number, status: String, Balance : Number}],
+  maintainance : {type : Number, default : 0.001},
+  unrealizedPl : {type : Number, default : 0.0021},
+  openPosition : {type : Number, default : 0.0051},
+  activeOders : {type : Number, default : 0.00553},
 
   affiliateStatus : {
     index : {type : String},
