@@ -5,6 +5,8 @@ const router: express.Router = express.Router();
 
 //look up a single client
 router.get('/lookup', ClientController.lookupClient);
+//look up a single client
+router.get('/lookupWithId', ClientController.lookUpClientWithId);
 //look up all client
 router.get('/lookup/all', ClientController.lookupAllClient);
 //delete client

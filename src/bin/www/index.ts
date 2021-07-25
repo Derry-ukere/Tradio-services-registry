@@ -9,7 +9,7 @@ app.use(errorHandler());
        
   await connectDB()   
     .then(() => {               
-      // Initializure server                               
+      // Initializure server                                    
       const server = app.listen(app.get('port')); 
 
       server.on('listening',()=>{

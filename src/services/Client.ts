@@ -46,6 +46,24 @@ export default  class UserService {
       };
     }
   }
+
+  static async lookUpClientWithId (query : {id : string}) {
+    const userId = query.id;
+    console.log('id is --', userId);
+
+    if(!userId){
+      throw new Error ('specify Id');
+    }
+    try{
+      const client = await Client.findById(userId);
+      return client;
+    }catch (error){
+      throw {
+        ...error
+      };
+    }
+  }
+
   static async lookUpAllClient ( ) {
     try{
       const clients = await Client.find();

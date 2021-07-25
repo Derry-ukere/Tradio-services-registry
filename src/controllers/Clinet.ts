@@ -23,6 +23,18 @@ export default class ClientController {
     }
   }
   
+  // @desc    Fetch single client by id
+  // @route   GET /api/products/email? & passwor
+  // @access  private
+  static async lookUpClientWithId(req : Request, res : Response){
+    try {
+      const client = await   UserService.lookUpClientWithId(req.query);
+      return  res.send(client);
+    }catch(error){
+      handleErrorResponse(error, res); 
+      console.log(error);
+    }
+  }
   // @desc    a function to get all users
   // @route   GET /api/client/lookup/all
   // @access  private
