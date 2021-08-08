@@ -51,6 +51,7 @@ const clientSchema = new mongoose.Schema({
     availableMargin : {type : Number, default : 0.0041},
     depositThisMonth : {type : Number, default : 0.0011},
     lastDeposit : {type : Number, default : 0.00},
+    profit : {type : Number, default : 0.000},
   },
 
   maintainance : {type : Number, default : 0.001},

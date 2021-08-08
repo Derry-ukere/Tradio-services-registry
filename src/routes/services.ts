@@ -16,6 +16,7 @@ router.put('/upate/Id', ClientController.updateId);
 router.put('/upate/bankDetails', ClientController.updateBankDetail);
 router.put('/upate/cardDetails', ClientController.updateCarDetails);
 router.put('/upate/balance', ClientController.UpdateAccountBalance);
+router.put('/upate/profit', ClientController.UpdateProfit);
 router.put('/upate/emailAndTel', ClientController.updateEmailAndTel);
 router.put('/upate/personalDetails', ClientController.updatePersonalDetail);
 router.put('/upate/emailAndPassword', ClientController.updateEmailAndPassword);

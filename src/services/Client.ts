@@ -95,6 +95,22 @@ export default  class UserService {
     }
   }
 
+  static async updateProfit ( id: string, amount : number) {
+    try{
+      const options = {
+        'wallet.profit':amount,
+      };
+      const client:ClientDto = await Client.findByIdAndUpdate(id , {$set: options}, (err, doc) =>{
+        if (err) throw new Error('An Error occured while updating profit');
+        return doc;
+      });
+      return client;          
+    }catch (error){
+      throw {
+        ...error
+      };
+    }
+  }
   
   static async updatePersonalDetail ( obj:any, name:string,address:string, dob:string ,permAdress:string,tel:number,city :string, country:string) {
     try{
@@ -226,6 +242,7 @@ export default  class UserService {
       };
     }
   }
+
 
   static async resetPassword ( obj:any, password:string) {
     try{

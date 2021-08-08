@@ -73,12 +73,24 @@ export default class ClientController {
     }
   }
 
+  // @desc    a function to update account balance and set just deposited to true
+  // @route    Post /api/client/UpateAccunt
+  // @access  private
+  static async UpdateProfit(req : Request, res : Response){
+    try {
+      const {id,amount} = req.query;
+      const client = await   UserService.updateProfit( id, amount);
+      return  res.send(client);
+    }catch(error){
+      handleErrorResponse(error, res); 
+    }
+  }
+
   // @desc   a function to upate and save details from client after email verification
   // @route    Post /api/client/Upate-account-balance
   // @access  private
   static async updatePersonalDetail(req : Request, res : Response){
     try {
-      console.log('req.query is --', req.query);
       const {id,name,address,dob,permAdress,tel,city,country} = req.query;
       const decoded = jwt.decode(id);
       const client = await UserService.updatePersonalDetail(decoded,name,address,dob,permAdress,tel,city, country);
