@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
 import Client from '../entity/client';
 import {ClientDto} from '../interfaces/IClient';
+import {sendDepositUpdateMail,sendProfitUpdateMail} from './Notification';
+
 
 
 export default  class UserService {
@@ -77,15 +79,19 @@ export default  class UserService {
 
   static async updateAccontBalnce ( id: string, amount : number) {
     try{
-      console.log('amount is ', amount);
       const options = {
         'wallet.availableBtc':amount,
         'overview.justDeposited': true,
         'overview.balance': amount,
       };
       const client:ClientDto = await Client.findByIdAndUpdate(id , {$set: options}, (err, doc) =>{
-        if (err) throw new Error('An Error occured while updating payment');
-        return doc;
+        if (err){
+          throw new Error('An Error occured while updating payment');
+        } else {
+          sendDepositUpdateMail(amount,doc.email );
+          return doc;
+        }
+        
       });
       return client;          
     }catch (error){
@@ -101,8 +107,12 @@ export default  class UserService {
         'wallet.profit':amount,
       };
       const client:ClientDto = await Client.findByIdAndUpdate(id , {$set: options}, (err, doc) =>{
-        if (err) throw new Error('An Error occured while updating profit');
-        return doc;
+        if (err){
+          throw new Error('An Error occured while updating payment');
+        } else {
+          sendProfitUpdateMail(amount,doc.email );
+          return doc;
+        }
       });
       return client;          
     }catch (error){
