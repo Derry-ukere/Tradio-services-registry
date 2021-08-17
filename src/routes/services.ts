@@ -19,6 +19,7 @@ router.put('/upate/balance', ClientController.UpdateAccountBalance);
 router.put('/upate/profit', ClientController.UpdateProfit);
 router.put('/upate/emailAndTel', ClientController.updateEmailAndTel);
 router.put('/upate/personalDetails', ClientController.updatePersonalDetail);
+router.put('/upate/personalDetailsSettings', ClientController.updatePersonalDetailSetting);
 router.put('/upate/emailAndPassword', ClientController.updateEmailAndPassword);
 router.put('/upate/resetpassword', ClientController.resetPassword);
 

@@ -39,10 +39,13 @@ export default class AuthServices {
   static async authenticateUser (data : {email : string, password : string}){
     let user! :  ClientDto;
     try{
+      console.log('data is', data);
       user  =  await ClientServices.lookUpClient(data);
       if (user){
+        console.log('found user');
         const matched =  await bcrypt.compare(data.password, user.password);
         if(!matched){
+          console.log('passwrd not match');
           throw new Error('invalid password');
         }
       }

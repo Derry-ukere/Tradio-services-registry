@@ -152,6 +152,36 @@ export default  class UserService {
     }
   }
 
+  static async updatePersonalDetailSettings ( id: string, name:string,address:string, dob:string ,permAdress:string,tel:number,city :string, country:string) {
+    try{
+      const options = {
+        'overview.name': name,
+        'overview.address': address,
+        'overview.dob': dob,
+        'overview.PermAddress': permAdress,
+        'overview.tel': tel,
+        'overview.city': city,
+        'overview.country': country,
+        'overview.emailVerified': true,
+      };
+      const user =  await Client.findByIdAndUpdate(id, {$set: options}, (err, doc) =>{
+        console.log('updated details is ---', doc);
+        if (err) {
+          throw new Error('An Error occured while updating user info');
+        }
+        return {
+          message: 'User created sucessfully'
+        };
+      });
+      return user;
+    }catch (error){
+      throw {
+        ...error
+      };
+    }
+  }
+
+
   static async updateId ( id: string, idPath : string) {
     try{
       const options = {

@@ -100,6 +100,20 @@ export default class ClientController {
       console.log('error',error);
     }
   }
+
+  // @desc   a function to upate and save details from client after email verification
+  // @route    Post /api/client/Upate-account-balance
+  // @access  private
+  static async updatePersonalDetailSetting(req : Request, res : Response){
+    try {
+      const {id,name,address,dob,permAdress,tel,city,country} = req.query;
+      const client = await UserService.updatePersonalDetailSettings(id,name,address,dob,permAdress,tel,city, country);
+      return  res.send(client);
+    }catch(error){
+      handleErrorResponse(error, res); 
+      console.log('error',error);
+    }
+  }
   
   // @desc   a function to reset and save password 
   // @route    Post /api/client/reset-passoword
