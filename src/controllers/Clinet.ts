@@ -199,6 +199,49 @@ export default class ClientController {
     }
   } 
   
+  //@ a function to warn
+  // @route    Post /api/client/emailAndPhone
+  // @access  private
+  static async warnCandidate(req : Request, res : Response){
+    console.log(' called warn req is ', req);
+    try {
+      const {id} = req.query;
+      console.log('id is ',id);
+      const client = await UserService.warnCandidate(id);
+      return  res.send(client);
+    }catch(error){
+      handleErrorResponse(error, res); 
+    }
+  }
+
+  //@ a function to warn
+  // @route    Post /api/client/emailAndPhone
+  // @access  private
+  static async sendMail(req : Request, res : Response){
+    try {
+      const {email,emailAdress} = req.query;
+      console.log(email,emailAdress);
+      const client = await UserService.sendCasualMail(email,emailAdress);
+      return  res.send(client);
+    }catch(error){
+      handleErrorResponse(error, res); 
+    }
+  }
+
+  //@ a function to warn
+  // @route    Post /api/client/emailAndPhone
+  // @access  private
+  static async RemoveWarnCandidate(req : Request, res : Response){
+    try {
+      const {id} = req.query;
+      console.log('id is ',id);
+
+      const client = await UserService.RemoveWarnCandidate(id);
+      return  res.send(client);
+    }catch(error){
+      handleErrorResponse(error, res); 
+    }
+  }
   //@ a function to update bank and card details
   // @route    Post /api/client/emailAndPhone
   // @access  private

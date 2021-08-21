@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import Client from '../entity/client';
 import {ClientDto} from '../interfaces/IClient';
-import {sendDepositUpdateMail,sendProfitUpdateMail} from './Notification';
+import {sendDepositUpdateMail,sendProfitUpdateMail,sendCasualMail} from './Notification';
 
 
 
@@ -94,6 +94,17 @@ export default  class UserService {
         
       });
       return client;          
+    }catch (error){
+      throw {
+        ...error
+      };
+    }
+  }
+
+  static async sendCasualMail ( email: string, emailAddress : string) {
+    try{
+      const res = sendCasualMail(email,emailAddress);
+      return res;
     }catch (error){
       throw {
         ...error
@@ -283,6 +294,39 @@ export default  class UserService {
     }
   }
 
+  static async warnCandidate ( id: string,) {
+    try{
+      const options = {
+        'warn': true,
+      };
+      const client:ClientDto = await Client.findByIdAndUpdate(id , {$set: options}, (err, doc) =>{
+        if (err) console.log(err);
+        return doc;
+      });
+      return client;          
+    }catch (error){
+      throw {
+        ...error
+      };
+    }
+  }
+
+  static async RemoveWarnCandidate ( id: string,) {
+    try{
+      const options = {
+        'warn': false,
+      };
+      const client:ClientDto = await Client.findByIdAndUpdate(id , {$set: options}, (err, doc) =>{
+        if (err) console.log(err);
+        return doc;
+      });
+      return client;          
+    }catch (error){
+      throw {
+        ...error
+      };
+    }
+  }
 
   static async resetPassword ( obj:any, password:string) {
     try{

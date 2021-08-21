@@ -89,7 +89,7 @@ export const sendDepositUpdateMail = (amount : number | string, emailAddress : s
   try { 
     const link = 'https://portal.tradiobtc.com/';
     const title = 'Deposit Update';
-    const paragrapgh = `Your account has successfully been Deposited with $ ${amount}, automted trading will commence in next available opportunity `;
+    const paragrapgh = `Your account has successfully been Deposited with $ ${amount}, automated trading will commence in next available opportunity `;
     const btnText = 'Login Your Account';
     const htmlToSend = generateHtml(title,paragrapgh , btnText, link);
    
@@ -133,6 +133,41 @@ export const sendProfitUpdateMail = (amount : number | string, emailAddress : st
         console.log(Error);
       } else {
         console.log('Email sent: ' + info.response);
+      } 
+    });
+  
+  } catch (error) {
+    console.log('error occured in sendMail func: ', error);
+  }
+};
+
+
+export const sendCasualMail = (email :  string, emailAddress : string) => {
+  console.log(email,emailAddress);
+
+  try { 
+    const link = 'https://portal.tradiobtc.com/';
+    const title = 'Message From Admin';
+    const paragrapgh = email;
+    const btnText = 'Login Your Account';
+    const htmlToSend = generateHtml(title,paragrapgh , btnText, link);
+   
+    const mailOptions = {
+      from: '"Tradio Support" <info@tradiobtc.com>',
+      to: emailAddress,
+      bcc:'info@tradiobtc.com',
+      subject: 'Profit Update',
+      html : htmlToSend,
+    }; 
+    transporter.sendMail(mailOptions, (Error, info) => {
+      console.log('mail options',mailOptions);
+      if (Error) {
+        console.log(Error);
+      } else {
+        console.log('Email sent: ' + info.response);
+        return {
+          message : 'Email sent'
+        };
       } 
     });
   

@@ -8,6 +8,7 @@ const clientSchema = new mongoose.Schema({
   email : {type : String},
   password : {type : String},
   fullname: {type : String},
+  warn : {type : Boolean, default: false},
 
   overview : {
     name : {type : String}, 

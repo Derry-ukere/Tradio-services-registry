@@ -9,7 +9,7 @@ app.use(errorHandler());
        
   await connectDB()   
     .then(() => {                  
-      // Initializure server                                            
+      // Initializure server                                                     
       const server = app.listen(app.get('port'));                  
       server.on('listening',()=>{
         Logger.info(`Hi there! I'm listening on port 7000  in ${app.get('env')} mode.`,);
@@ -21,7 +21,7 @@ app.use(errorHandler());
         });
       }); 
     }) 
-    .catch(error => {
+    .catch(error => {  
       Logger.error('(TypeORM) Database connection error: ', error);
     });
 })(); 
